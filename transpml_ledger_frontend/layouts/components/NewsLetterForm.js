@@ -3,14 +3,17 @@ import { FaEnvelope } from "react-icons/fa";
 
 function CustomForm({ status, message, onValidated }) {
   const [email, setEmail] = useState("");
+  const [passwd, setPasswd] = useState("");
 
   const resetForm = () => {
     setEmail("");
   };
-
+  const putPasswd = (event) => {
+    setPasswd(event.value);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
-    email && email.indexOf("@") > -1 && onValidated({ EMAIL: email });
+    email && email.indexOf("@") > -1;
     resetForm();
   };
 
@@ -24,7 +27,16 @@ function CustomForm({ status, message, onValidated }) {
             placeholder="Type And Hit Enter"
             onChange={(e) => setEmail(e.target.value)}
           />
-          <FaEnvelope className="absolute top-1/2 right-5 -translate-y-1/2 text-xl transition duration-75" />
+          <FaEnvelope className="absolute right-5 top-1/2 -translate-y-1/2 text-xl transition duration-75" />
+        </fieldset>
+        <fieldset className="my-1">
+          <input
+            className="newsletter-input form-input h-12 w-full rounded-3xl border-none bg-theme-light px-5 py-3 pr-12 text-dark placeholder:text-xs dark:bg-darkmode-theme-dark"
+            type="text"
+            placeholder="Set Password"
+            onChange={putPasswd}
+          />
+          <FaEnvelope className="absolute right-5 top-1/2 -translate-y-1/2 text-xl transition duration-75" />
         </fieldset>
         <button className="d-block  btn btn-primary mt-4 w-full" type="submit">
           Sign In

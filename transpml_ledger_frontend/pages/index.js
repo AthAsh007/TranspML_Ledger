@@ -43,33 +43,39 @@ const Home = ({
 
         <div className="container">
           <div className="row flex-wrap-reverse items-center justify-center lg:flex-row">
-            <div className={banner.image_enable ? "mt-12 text-center lg:mt-0 lg:text-left lg:col-6" : "mt-12 text-center lg:mt-0 lg:text-left lg:col-12"}>
+            <div
+              className={
+                banner.image_enable
+                  ? "mt-12 text-center lg:col-6 lg:mt-0 lg:text-left"
+                  : "mt-12 text-center lg:col-12 lg:mt-0 lg:text-left"
+              }
+            >
               <div className="banner-title">
                 {markdownify(banner.title, "h1")}
                 {markdownify(banner.title_small, "span")}
               </div>
               {markdownify(banner.content, "p", "mt-4")}
               {banner.button.enable && (
-                  <Link
-                    className="btn btn-primary mt-6"
-                    href={banner.button.link}
-                    rel={banner.button.rel}
-                  >
-                    {banner.button.label}
-                  </Link>
+                <Link
+                  className="btn btn-primary mt-6"
+                  href={banner.button.link}
+                  rel={banner.button.rel}
+                >
+                  {banner.button.label}
+                </Link>
               )}
             </div>
             {banner.image_enable && (
-                <div className="col-9 lg:col-6">
-                  <ImageFallback
-                    className="mx-auto object-contain"
-                    src={banner.image}
-                    width={548}
-                    height={443}
-                    priority={true}
-                    alt="Banner Image"
-                  />
-                </div>
+              <div className="col-9 lg:col-6">
+                <ImageFallback
+                  className="mx-auto object-contain"
+                  src={banner.image}
+                  width={548}
+                  height={443}
+                  priority={true}
+                  alt="Banner Image"
+                />
+              </div>
             )}
           </div>
         </div>
@@ -79,7 +85,7 @@ const Home = ({
       <section className="section">
         <div className="container">
           <div className="row items-start">
-            <div className="mb-12 lg:mb-0 lg:col-8">
+            <div className="mb-12 lg:col-8 lg:mb-0">
               {/* Featured posts */}
               {featured_posts.enable && (
                 <div className="section">
@@ -89,7 +95,7 @@ const Home = ({
                       <div className="md:col-6">
                         <Post post={featuredPosts[0]} />
                       </div>
-                      <div className="scrollbar-w-[10px] mt-8 max-h-[480px] scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-border dark:scrollbar-track-gray-800 dark:scrollbar-thumb-darkmode-theme-dark md:mt-0 md:col-6">
+                      <div className="scrollbar-w-[10px] mt-8 max-h-[480px] scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-border md:col-6 dark:scrollbar-track-gray-800 dark:scrollbar-thumb-darkmode-theme-dark md:mt-0">
                         {featuredPosts
                           .slice(1, featuredPosts.length)
                           .map((post, i, arr) => (

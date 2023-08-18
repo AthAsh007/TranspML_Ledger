@@ -23,7 +23,7 @@ const Sidebar = ({ posts, categories, className }) => {
   const [showRecent, setShowRecent] = useState(true);
 
   return (
-    <aside className={`${className} px-0 lg:px-6 lg:col-4`}>
+    <aside className={`${className} px-0 lg:col-4 lg:px-6`}>
       {about.enable && (
         <div className="relative rounded border border-border p-6 text-center dark:border-darkmode-border">
           <ImageFallback
@@ -75,7 +75,7 @@ const Sidebar = ({ posts, categories, className }) => {
                 </svg>
                 <Link className="py-2" href={`/categories/${category.name}`}>
                   {category.name.replace("-", " ")}
-                  <span className="absolute top-1/2 right-0 -translate-y-1/2 text-[10px] text-gray-500">
+                  <span className="absolute right-0 top-1/2 -translate-y-1/2 text-[10px] text-gray-500">
                     {category.posts}
                   </span>
                 </Link>
@@ -191,8 +191,8 @@ const Sidebar = ({ posts, categories, className }) => {
             render={({ subscribe, status, message }) => (
               <CustomForm
                 onValidated={(formData) => subscribe(formData)}
-                status={status}
-                message={message}
+                status={"status"}
+                message={"message"}
               />
             )}
           />

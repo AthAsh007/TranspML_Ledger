@@ -69,7 +69,7 @@ const Home = ({
               <div className="col-9 lg:col-6">
                 <ImageFallback
                   className="mx-auto object-contain"
-                  src={banner.image}
+                  src={"/images/HomeUi.png"}
                   width={548}
                   height={443}
                   priority={true}
@@ -151,7 +151,7 @@ const Home = ({
               )}
 
               {/* Recent Posts */}
-              {recent_posts.enable && (
+              {recent_posts.disable && (
                 <div className="section pt-0">
                   {markdownify(recent_posts.title, "h2", "section-title")}
                   <div className="rounded border border-border px-6 pt-6 dark:border-darkmode-border">

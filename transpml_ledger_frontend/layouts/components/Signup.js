@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Login() {
+function Signup() {
   const [email, setEmail] = useState("");
   const [passwd, setPasswd] = useState("");
 
@@ -21,8 +21,7 @@ function Login() {
     <>
       <div class="mt-4 flex items-center justify-center">
         <div>
-          <h4 className="login-title">Login</h4>
-          {/* <p className="mt-10 text-xs"></p> */}
+          <h4 className="login-title">Signup</h4>
           <form action="#" className="py-6" onSubmit={handleSubmit}>
             <fieldset className="relative">
               <input
@@ -46,7 +45,7 @@ function Login() {
               className="d-block  btn btn-primary mt-4 w-full"
               type="submit"
             >
-              Log In
+              Sign In
             </button>
           </form>
         </div>
@@ -55,4 +54,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Signup;

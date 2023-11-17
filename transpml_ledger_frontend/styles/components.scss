@@ -36,13 +36,13 @@
 // content style
 .content {
   @apply prose max-w-none;
-  @apply prose-headings:mt-[.5em] prose-headings:mb-[.9em] prose-headings:font-bold prose-headings:text-dark prose-headings:dark:text-white;
+  @apply prose-headings:mb-[.9em] prose-headings:mt-[.5em] prose-headings:font-bold prose-headings:text-dark prose-headings:dark:text-white;
   @apply prose-h1:text-h1-sm md:prose-h1:text-h1;
   @apply prose-h2:text-h2-sm md:prose-h2:text-h2;
   @apply prose-h3:text-h3-sm md:prose-h3:text-h3;
   @apply prose-hr:border-border prose-hr:dark:border-darkmode-border;
   @apply prose-p:text-base prose-p:text-text prose-p:dark:text-darkmode-light;
-  @apply prose-blockquote:mb-12 prose-blockquote:rounded prose-blockquote:border-0 prose-blockquote:bg-theme-light prose-blockquote:py-1 prose-blockquote:px-12 prose-blockquote:not-italic prose-blockquote:dark:bg-theme-dark prose-blockquote:lg:px-16;
+  @apply prose-blockquote:mb-12 prose-blockquote:rounded prose-blockquote:border-0 prose-blockquote:bg-theme-light prose-blockquote:px-12 prose-blockquote:py-1 prose-blockquote:not-italic prose-blockquote:dark:bg-theme-dark prose-blockquote:lg:px-16;
   @apply prose-code:px-1 prose-code:text-primary;
   @apply prose-pre:rounded;
   @apply prose-img:rounded;
@@ -51,7 +51,7 @@
   @apply prose-a:text-primary prose-a:no-underline hover:prose-a:underline;
   @apply prose-li:text-text prose-li:dark:text-darkmode-light;
   @apply prose-table:overflow-hidden prose-table:border prose-table:border-border prose-table:dark:border-darkmode-border;
-  @apply prose-thead:border-border prose-thead:bg-theme-light prose-th:py-4 prose-th:px-4 prose-th:text-dark prose-thead:dark:border-darkmode-border prose-thead:dark:bg-theme-dark prose-th:dark:text-darkmode-light;
+  @apply prose-thead:border-border prose-thead:bg-theme-light prose-th:px-4 prose-th:py-4 prose-th:text-dark prose-thead:dark:border-darkmode-border prose-thead:dark:bg-theme-dark prose-th:dark:text-darkmode-light;
   @apply prose-tr:border-border prose-tr:dark:border-darkmode-border;
   @apply prose-td:px-3 prose-td:py-4 prose-td:dark:text-darkmode-light;
   @apply prose-li:marker:dark:text-darkmode-light;
@@ -90,7 +90,7 @@
     }
 
     span {
-      @apply font-normal font-bold text-dark dark:text-darkmode-light lg:text-[55px];
+      @apply font-bold font-normal text-dark dark:text-darkmode-light lg:text-[55px];
     }
   }
 }
@@ -98,6 +98,11 @@
 //section-title
 .section-title {
   @apply mb-12 underline decoration-primary decoration-wavy decoration-2 underline-offset-[.5em];
+}
+
+//login-title
+.login-title {
+  @apply mb-12 flex items-center justify-center underline decoration-primary decoration-wavy decoration-2 underline-offset-[.5em];
 }
 
 //socials
@@ -133,7 +138,7 @@ footer .socials {
 
 // notice
 .notice {
-  @apply rounded overflow-x-hidden;
+  @apply overflow-x-hidden rounded;
   .notice-body {
     @apply text-[#666666] dark:text-darkmode-light;
     p {

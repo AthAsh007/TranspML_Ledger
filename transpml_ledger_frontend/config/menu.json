@@ -9,6 +9,10 @@
       "url": "/login"
     },
     {
+      "name": "Signup",
+      "url": "/signup"
+    },
+    {
       "name": "About",
       "url": "/about"
     },

@@ -37,9 +37,12 @@ const SearchPage = () => {
           {searchResults.length > 0 ? (
             <div className="row">
               {searchResults.map((post, i) => (
-                <div key={`key-${i}`} className="col-12 mb-8 sm:col-6">
-                  <Post post={post} />
+                <div className="py-24 text-center text-h3 shadow">
+                  No Search Found
                 </div>
+                // <div key={`key-${i}`} className="col-12 mb-8 sm:col-6">
+                //   <Post post={post} />
+                // </div>
               ))}
             </div>
           ) : (

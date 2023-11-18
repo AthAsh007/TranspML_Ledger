@@ -26,8 +26,8 @@ const Logo = ({ src }) => {
           alt={title}
           priority
           style={{
-            height: logo_height.replace("px", "") + "px",
-            width: logo_width.replace("px", "") + "px",
+            height: "200px",
+            width: "350px",
           }}
           className={"m-auto"}
         />

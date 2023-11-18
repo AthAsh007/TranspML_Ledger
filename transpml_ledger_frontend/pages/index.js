@@ -85,7 +85,7 @@ const Home = ({
       <section className="section">
         <div className="container">
           <div className="row items-start">
-            <div className="mb-12 lg:col-8 lg:mb-0">
+            <div className="w-full">
               {/* Featured posts */}
               {featured_posts.enable && (
                 <div className="section">
@@ -138,7 +138,7 @@ const Home = ({
               )}
 
               {/* Promotion */}
-              {promotion.enable && (
+              {promotion.disable && (
                 <Link href={promotion.link} className="section block pt-0">
                   <ImageFallback
                     className="h-full w-full"
@@ -172,11 +172,11 @@ const Home = ({
               />
             </div>
             {/* sidebar */}
-            <Sidebar
+            {/* <Sidebar
               className={"lg:mt-[9.5rem]"}
               posts={posts}
               categories={categories}
-            />
+            /> */}
           </div>
         </div>
       </section>

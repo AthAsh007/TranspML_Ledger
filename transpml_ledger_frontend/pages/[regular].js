@@ -6,6 +6,7 @@ import Default from "@layouts/Default";
 import Login from "@layouts/components/Login";
 import Signup from "@layouts/components/Signup";
 import { getRegularPage, getSinglePage } from "@lib/contentParser";
+import UploadCode from "@layouts/UploadCode";
 
 // for all regular pages
 const RegularPages = ({ data }) => {
@@ -33,6 +34,8 @@ const RegularPages = ({ data }) => {
         <Login />
       ) : layout === "signup" ? (
         <Signup />
+      ) : layout === "uploadcode" ? (
+        <UploadCode data={data} />
       ) : (
         <Default data={data} />
       )}

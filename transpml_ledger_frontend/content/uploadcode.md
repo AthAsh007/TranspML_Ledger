@@ -1,11 +1,11 @@
 ---
-title: "Let’s, Talk </br> About You"
+title: "Let’s, Add </br> Your Code"
 description: "meta description"
 phone: "+0000000000"
 mail: "info@email.com"
 location: "Earth"
 form_action: "#"
-layout: "contact"
+layout: "uploadcode"
 addresses:
   - icon: FaUserAlt
     content: +0000000000

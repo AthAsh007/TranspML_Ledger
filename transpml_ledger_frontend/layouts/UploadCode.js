@@ -3,10 +3,16 @@ import Link from "next/link";
 import { BsArrowRightShort } from "react-icons/bs";
 import { FaEnvelope, FaMapMarkerAlt, FaUserAlt } from "react-icons/fa";
 import ImageFallback from "./components/ImageFallback";
+import React, { useState } from "react";
 
-const Contact = ({ data }) => {
+const UploadCode = ({ data }) => {
+  const [selectedFile, setSelectedFile] = useState(null);
   const { frontmatter } = data;
   const { title, form_action, phone, mail, location } = frontmatter;
+
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
 
   return (
     <section className="section lg:mt-16">
@@ -28,9 +34,9 @@ const Contact = ({ data }) => {
           </div>
           <div className="contact-form-wrapper rounded border border-border p-6 lg:col-6 dark:border-darkmode-border">
             <h2>
-              Send Us A
+              Code In,
               <span className="ml-1.5 inline-flex items-center text-primary">
-                Message
+                Solutions Out.
                 <BsArrowRightShort />
               </span>
             </h2>
@@ -41,36 +47,48 @@ const Contact = ({ data }) => {
             >
               <div className="mb-6">
                 <label className="mb-2 block font-secondary" htmlFor="name">
-                  Full name
+                  Title
                   <small className="font-secondary text-sm text-primary">
                     *
                   </small>
                 </label>
                 <input
                   className="form-input w-full"
-                  name="name"
+                  name="title"
                   type="text"
-                  placeholder="Thomas Milano"
+                  placeholder="Enter Title of Code"
                   required
                 />
               </div>
               <div className="mb-6">
-                <label className="mb-2 block font-secondary" htmlFor="email">
-                  Email Address
+                <label className="mb-2 block font-secondary" htmlFor="name">
+                  Description
                   <small className="font-secondary text-sm text-primary">
                     *
                   </small>
                 </label>
                 <input
                   className="form-input w-full"
-                  name="email"
-                  type="email"
-                  placeholder="example@gmail.com"
+                  name="description"
+                  type="text"
+                  placeholder="Your Code description"
                   required
                 />
               </div>
               <div className="mb-6">
-                <label className="mb-2 block font-secondary" htmlFor="subject">
+                <label className="mb-2 block font-secondary" htmlFor="name">
+                  Upload Here
+                  <small className="font-secondary text-sm text-primary">
+                    *
+                  </small>
+                </label>
+                <input
+                  className="btn-upload"
+                  type="file"
+                  onchange={handleFileChange}
+                />
+
+                {/* <label className="mb-2 block font-secondary" htmlFor="subject">
                   Subject
                   <small className="font-secondary text-sm text-primary">
                     *
@@ -82,9 +100,10 @@ const Contact = ({ data }) => {
                   type="text"
                   placeholder="Blog advertisement"
                   required
-                />
+                /> */}
               </div>
-              <div className="mb-6">
+
+              {/* <div className="mb-6">
                 <label className="mb-2 block font-secondary" htmlFor="message">
                   Your Message Here
                   <small className="font-secondary text-sm text-primary">
@@ -96,17 +115,13 @@ const Contact = ({ data }) => {
                   placeholder="Hello I’m Mr ‘x’ from………….."
                   rows="7"
                 />
-              </div>
-              <input
-                className="btn btn-primary"
-                type="submit"
-                value="Send Now"
-              />
+              </div> */}
+              <input className="btn btn-primary" type="submit" value="Save" />
             </form>
           </div>
         </div>
         <div className="row">
-          {phone && (
+          {/* {phone && (
             <div className="md:col-6 lg:col-4">
               <Link
                 href={`tel:${phone}`}
@@ -120,6 +135,7 @@ const Contact = ({ data }) => {
               </Link>
             </div>
           )}
+          
           {mail && (
             <div className="md:col-6 lg:col-4">
               <Link
@@ -146,11 +162,11 @@ const Contact = ({ data }) => {
                 </p>
               </span>
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </section>
   );
 };
 
-export default Contact;
+export default UploadCode;

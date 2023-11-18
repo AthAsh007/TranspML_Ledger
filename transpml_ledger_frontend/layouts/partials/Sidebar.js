@@ -24,7 +24,7 @@ const Sidebar = ({ posts, categories, className }) => {
 
   return (
     <aside className={`${className} px-0 lg:col-4 lg:px-6`}>
-      {about.enable && (
+      {about.disable && (
         <div className="relative rounded border border-border p-6 text-center dark:border-darkmode-border">
           <ImageFallback
             className="-z-[1]"
@@ -85,8 +85,8 @@ const Sidebar = ({ posts, categories, className }) => {
         </div>
       )}
 
-      {/* featured widget */}
-      {featured_posts.enable && (
+      {/* { featured widget} */}
+      {featured_posts.disable && (
         <div className="mt-6 rounded border border-border p-6 dark:border-darkmode-border">
           <h4 className="section-title mb-12 text-center">Featured</h4>
           <div className="mb-12 flex items-center justify-center">
@@ -182,7 +182,7 @@ const Sidebar = ({ posts, categories, className }) => {
       )}
 
       {/* newsletter */}
-      {newsletter.enable && (
+      {newsletter.disable && (
         <div className="mt-6  rounded border border-border p-6 text-center dark:border-darkmode-border">
           <h4 className="section-title">{newsletter.title}</h4>
           <p className="mt-10 text-xs">{newsletter.content}</p>

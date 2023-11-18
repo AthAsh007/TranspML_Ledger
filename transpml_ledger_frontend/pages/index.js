@@ -9,7 +9,9 @@ import { getTaxonomy } from "@lib/taxonomyParser";
 import dateFormat from "@lib/utils/dateFormat";
 import { sortByDate } from "@lib/utils/sortFunctions";
 import { markdownify } from "@lib/utils/textConverter";
+import { ethers } from "ethers";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 import { FaRegCalendar } from "react-icons/fa";
 const { blog_folder, pagination } = config.settings;
 
@@ -22,6 +24,24 @@ const Home = ({
   promotion,
 }) => {
   // define state
+  const [signer, setSigner] = useState();
+
+  useEffect(() => connectToMetaMask, []);
+
+  const connectToMetaMask = async () => {
+    try {
+      const provider = new ethers.providers.Web3Provider(
+        window.ethereum,
+        "any"
+      );
+      await provider.send("eth_requestAccounts", []);
+      const signer = provider.getSigner();
+      setSigner(signer);
+      console.log("Account:", await signer.getAddress());
+    } catch (err) {
+      console.error(err);
+    }
+  };
   const sortPostByDate = sortByDate(posts);
   const featuredPosts = sortPostByDate.filter(
     (post) => post.frontmatter.featured

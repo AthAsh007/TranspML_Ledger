@@ -120,10 +120,45 @@ const Home = ({
       {/* Home main */}
       <section className="section">
         <div className="container">
+          <h1>Welcome Back! You're Now Logged In.</h1>
+        </div>
+        <div className="container">
           <div className="row items-start">
             <div className="w-full">
+              <div className="section">
+                {markdownify(
+                  "Welcome to the Future of AI Exploration!",
+                  "h4",
+                  "section-title"
+                )}
+                <div class="w-3/4 rounded border border-border p-6 dark:border-darkmode-border">
+                  <div className="row">
+                    <p>
+                      Unleash the Power of Machine Learning with our
+                      Cutting-edge Platform. Dive into a World where Innovation
+                      meets Blockchain, and where MetaMask is your Passport to
+                      Limitless Possibilities. Explore, Create, and Transform
+                      Your Ideas into Reality – One Smart Contract at a Time.
+                      Your Journey Starts Here
+                    </p>
+                  </div>
+                </div>
+                <div class="mt-3 w-3/4 rounded border border-border p-6 dark:border-darkmode-border">
+                  <div className="row">
+                    <p>
+                      Unlock the door to a realm where the boundaries between
+                      artificial intelligence and blockchain dissolve. Our
+                      platform is not just about running code; it's about
+                      sculpting the future. Dive deep, transact securely with
+                      MetaMask, and be the architect of your machine learning
+                      destiny
+                    </p>
+                  </div>
+                </div>
+              </div>
+
               {/* Featured posts */}
-              {featured_posts.enable && (
+              {featured_posts.disable && (
                 <div className="section">
                   {markdownify(featured_posts.title, "h2", "section-title")}
                   <div className="rounded border border-border p-6 dark:border-darkmode-border">
@@ -202,10 +237,10 @@ const Home = ({
                 </div>
               )}
 
-              <Pagination
+              {/* <Pagination
                 totalPages={Math.ceil(posts.length / showPosts)}
                 currentPage={1}
-              />
+              /> */}
             </div>
             {/* sidebar */}
             {/* <Sidebar

@@ -8,8 +8,11 @@ import React, { useState } from "react";
 
 const UploadCode = ({ data }) => {
   const [selectedFile, setSelectedFile] = useState();
+  const [output, setOutput] = useState();
+  const [codeTitle, setCodeTitle] = useState("");
+  const [codeDescription, setCodeDescription] = useState("");
   const { frontmatter } = data;
-  const { title, form_action, phone, mail, location } = frontmatter;
+  const { title, form_action, phone, mail, location, title_output } = frontmatter;
   const [cookies, setCookie, removeCookie] = useCookies(['user_account']);
 
   const handleFileChange = (event) => {
@@ -22,6 +25,8 @@ const UploadCode = ({ data }) => {
     var formdata = new FormData();
     formdata.append("file", selectedFile);
     formdata.append("user_account", cookies['user_account']);
+    formdata.append("title", codeTitle);
+    formdata.append("description", codeDescription);
 
     var requestOptions = {
       method: 'POST',
@@ -31,7 +36,7 @@ const UploadCode = ({ data }) => {
 
     fetch("http://127.0.0.1:5000/upload", requestOptions)
       .then(response => response.json())
-      .then(result => console.log(result))
+      .then(result => setOutput(result['output']))
       .catch(error => console.log('error', error));
   };
 
@@ -78,6 +83,8 @@ const UploadCode = ({ data }) => {
                   name="title"
                   type="text"
                   placeholder="Enter Title of Code"
+                  value={codeTitle}
+                  onChange={(event) => setCodeTitle(event.target.value)}
                   required
                 />
               </div>
@@ -93,6 +100,8 @@ const UploadCode = ({ data }) => {
                   name="description"
                   type="text"
                   placeholder="Your Code description"
+                  value={codeDescription}
+                  onChange={(event) => setCodeDescription(event.target.value)}
                   required
                 />
               </div>
@@ -108,82 +117,41 @@ const UploadCode = ({ data }) => {
                   type="file"
                   onChange={handleFileChange}
                 />
-
-                {/* <label className="mb-2 block font-secondary" htmlFor="subject">
-                  Subject
-                  <small className="font-secondary text-sm text-primary">
-                    *
-                  </small>
-                </label>
-                <input
-                  className="form-input w-full"
-                  name="subject"
-                  type="text"
-                  placeholder="Blog advertisement"
-                  required
-                /> */}
               </div>
-
-              {/* <div className="mb-6">
-                <label className="mb-2 block font-secondary" htmlFor="message">
-                  Your Message Here
-                  <small className="font-secondary text-sm text-primary">
-                    *
-                  </small>
-                </label>
-                <textarea
-                  className="form-textarea w-full"
-                  placeholder="Hello I’m Mr ‘x’ from………….."
-                  rows="7"
-                />
-              </div> */}
               <input className="btn btn-primary" type="submit" value="Save" />
             </form>
           </div>
         </div>
-        <div className="row">
-          {/* {phone && (
-            <div className="md:col-6 lg:col-4">
-              <Link
-                href={`tel:${phone}`}
-                className="my-4 flex h-[100px] items-center justify-center
-             rounded border border-border p-4 text-primary dark:border-darkmode-border"
-              >
-                <FaUserAlt />
-                <p className="ml-1.5 text-lg font-bold text-dark dark:text-darkmode-light">
-                  {phone}
-                </p>
-              </Link>
-            </div>
-          )}
-          
-          {mail && (
-            <div className="md:col-6 lg:col-4">
-              <Link
-                href={`mailto:${mail}`}
-                className="my-4 flex h-[100px] items-center justify-center
-             rounded border border-border p-4 text-primary dark:border-darkmode-border"
-              >
-                <FaEnvelope />
-                <p className="ml-1.5 text-lg font-bold text-dark dark:text-darkmode-light">
-                  {mail}
-                </p>
-              </Link>
-            </div>
-          )}
-          {location && (
-            <div className="md:col-6 lg:col-4">
-              <span
-                className="my-4 flex h-[100px] items-center justify-center
-             rounded border border-border p-4 text-primary dark:border-darkmode-border"
-              >
-                <FaMapMarkerAlt />
-                <p className="ml-1.5 text-lg font-bold text-dark dark:text-darkmode-light">
-                  {location}
-                </p>
+        <div className="row relative pb-16">
+          <ImageFallback
+            className="-z-[1] object-cover object-top"
+            src={"/images/map.svg"}
+            fill="true"
+            alt="map bg"
+            priority={true}
+          />
+          <div className="lg:col-6">
+            {markdownify(
+              title_output,
+              "h1",
+              "h1 my-10 lg:my-11 lg:pt-11 text-center lg:text-left lg:text-[64px]"
+            )}
+          </div>
+          <div className="contact-form-wrapper rounded border border-border p-6 lg:col-6 dark:border-darkmode-border">
+            <h2>
+              <span className="ml-1.5 inline-flex items-center text-primary">
+                Output.
+                <BsArrowRightShort />
               </span>
-            </div>
-          )} */}
+            </h2>
+            <label className="mb-2 block font-secondary" htmlFor="name">
+              <p className="contact-form mt-12">
+                {output}
+              </p>
+              <small className="font-secondary text-sm text-primary">
+              </small>
+            </label>
+          </div>
         </div>
       </div>
     </section>

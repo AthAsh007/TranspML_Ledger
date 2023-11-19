@@ -4,7 +4,9 @@ import { BsArrowRightShort } from "react-icons/bs";
 import { FaEnvelope, FaMapMarkerAlt, FaUserAlt } from "react-icons/fa";
 import ImageFallback from "./components/ImageFallback";
 import { useCookies } from 'react-cookie';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { contract } from "contract";
+import { ethers } from "ethers";
 
 const UploadCode = ({ data }) => {
   const [selectedFile, setSelectedFile] = useState();
@@ -14,13 +16,42 @@ const UploadCode = ({ data }) => {
   const { frontmatter } = data;
   const { title, form_action, phone, mail, location, title_output } = frontmatter;
   const [cookies, setCookie, removeCookie] = useCookies(['user_account']);
+  const [signer, setSigner] = useState();
+
+  useEffect(() => {
+      connectToMetaMask()
+  }, []);
+
+  const connectToMetaMask = async () => {
+    try {
+      const provider = new ethers.providers.Web3Provider(
+        window.ethereum,
+        "any"
+      );
+      await provider.send("eth_requestAccounts", []);
+      const signer = provider.getSigner();
+      setSigner(signer);
+      let signer_address = await signer.getAddress();
+      console.log("Account Connected:", signer_address);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
   };
 
-  const handleSave = (event) => {
+  const handleSave = async (event) => {
     event.preventDefault();
+
+    try {
+      const smartContract = new ethers.Contract(contract.address, contract.abi, signer);
+      let tx = await smartContract.functions.uploadDataModel(codeTitle, codeDescription);
+      console.log(tx);
+    } catch (err) {
+      console.log(err);
+    }
 
     var formdata = new FormData();
     formdata.append("file", selectedFile);

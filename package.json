@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@arcana/auth": "^1.0.7",
-    "react-loader-spinner": "^5.3.4"
-  }
-}

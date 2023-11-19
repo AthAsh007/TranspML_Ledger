@@ -6,6 +6,7 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import TagManager from "react-gtm-module";
 import "styles/style.scss";
+import { CookiesProvider } from 'react-cookie';
 
 const App = ({ Component, pageProps }) => {
   // default theme setup
@@ -57,7 +58,9 @@ const App = ({ Component, pageProps }) => {
         />
       </Head>
       <ThemeProvider attribute="class" defaultTheme={default_theme}>
-        <Component {...pageProps} />
+        <CookiesProvider>
+          <Component {...pageProps} />
+        </CookiesProvider>
       </ThemeProvider>
     </JsonContext>
   );

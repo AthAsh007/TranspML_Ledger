@@ -3,15 +3,36 @@ import Link from "next/link";
 import { BsArrowRightShort } from "react-icons/bs";
 import { FaEnvelope, FaMapMarkerAlt, FaUserAlt } from "react-icons/fa";
 import ImageFallback from "./components/ImageFallback";
+import { useCookies } from 'react-cookie';
 import React, { useState } from "react";
 
 const UploadCode = ({ data }) => {
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState();
   const { frontmatter } = data;
   const { title, form_action, phone, mail, location } = frontmatter;
+  const [cookies, setCookie, removeCookie] = useCookies(['user_account']);
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
+  };
+
+  const handleSave = (event) => {
+    event.preventDefault();
+
+    var formdata = new FormData();
+    formdata.append("file", selectedFile);
+    formdata.append("user_account", cookies['user_account']);
+
+    var requestOptions = {
+      method: 'POST',
+      body: formdata,
+      redirect: 'follow'
+    };
+
+    fetch("http://127.0.0.1:5000/upload", requestOptions)
+      .then(response => response.json())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
   };
 
   return (
@@ -42,7 +63,7 @@ const UploadCode = ({ data }) => {
             </h2>
             <form
               className="contact-form mt-12"
-              method="POST"
+              onSubmit={handleSave}
               action={form_action}
             >
               <div className="mb-6">
@@ -85,7 +106,7 @@ const UploadCode = ({ data }) => {
                 <input
                   className="btn-upload"
                   type="file"
-                  onchange={handleFileChange}
+                  onChange={handleFileChange}
                 />
 
                 {/* <label className="mb-2 block font-secondary" htmlFor="subject">

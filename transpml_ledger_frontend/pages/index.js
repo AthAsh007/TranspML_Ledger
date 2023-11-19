@@ -14,6 +14,8 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { FaRegCalendar } from "react-icons/fa";
 const { blog_folder, pagination } = config.settings;
+import { useCookies } from 'react-cookie';
+import { useRouter } from 'next/router';
 
 const Home = ({
   banner,
@@ -23,10 +25,19 @@ const Home = ({
   categories,
   promotion,
 }) => {
+  const router = useRouter();
+  const [cookies, setCookie, removeCookie] = useCookies(['user_account']);
   // define state
   const [signer, setSigner] = useState();
 
-  useEffect(() => connectToMetaMask, []);
+  useEffect(() => {
+      connectToMetaMask();
+      console.log(cookies);
+  }, [cookies]);
+
+  const create = async (data) => {
+    cookies().set('name', 'Hello');
+  }
 
   const connectToMetaMask = async () => {
     try {
@@ -37,7 +48,12 @@ const Home = ({
       await provider.send("eth_requestAccounts", []);
       const signer = provider.getSigner();
       setSigner(signer);
-      console.log("Account:", await signer.getAddress());
+      let signer_address = await signer.getAddress();
+      console.log("Account:", signer_address);
+      setCookie('user_account', signer_address, {
+        path: '/',
+      });
+      router.replace("/");
     } catch (err) {
       console.error(err);
     }

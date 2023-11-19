@@ -9,7 +9,7 @@ def create_app(test_config=None):
     if test_config == None:
         app.config.from_mapping(SECRET_KEY="dev",
                                 SQLALCHEMY_DATABASE_URI="sqlite:///codes.db",
-                                UPLOAD_FOLDER="D:/Web Development/Flask/transpml_backend/uploaded_files")
+                                UPLOAD_FOLDER="D:/Web Development/Atharva's Final Year Project/TranspML_Ledger/transpml_backend/uploaded_files")
     else:
         app.config.from_mapping(test_config)
 
@@ -37,6 +37,11 @@ def create_app(test_config=None):
             "user_account": code.user_account,
             "model_name": code.model_name
         } for code in data]}
+        return jsonify(results)
+
+    @app.route('/health_check', methods=['GET'])
+    def health_check():
+        results = {"health_check": "success"}
         return jsonify(results)
 
     db.app = app

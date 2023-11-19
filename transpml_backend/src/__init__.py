@@ -21,7 +21,9 @@ def create_app(test_config=None):
             file = request.files['file']
             code = Codes (
                 user_account=request.form["user_account"],
-                model_name=file.filename
+                model_name=file.filename,
+                title=request.form["title"],
+                description=request.form["description"]
             ) 
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
             db.session.add(code)
@@ -40,8 +42,6 @@ def create_app(test_config=None):
                 sys.stdout = stdout_backup
 
             return jsonify({
-                "user_account": code.user_account,
-                "model_name": file.filename,
                 "output": output
             })
         
@@ -51,7 +51,9 @@ def create_app(test_config=None):
         results = {"data": [{
             "id": code.id,
             "user_account": code.user_account,
-            "model_name": code.model_name
+            "model_name": code.model_name,
+            "title": code.title,
+            "description": code.description
         } for code in data]}
         return jsonify(results)
 

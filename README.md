@@ -64,11 +64,11 @@ To run the project:
 Open the website in your browser.
 
 ## Technology Stack
- - Frontend: Next.js, SCSS
- - Backend: Flask
- - Database: SQL Alchemy
- - Smart Contracts: Solidity
- - Blockchain: MetaMask
+ - Frontend: Next.js
+ - Backend: Flask, SQL Alchmey
+ - Database: Sqlite
+ - Smart Contract: Solidity
+ - Blockchain Network: Sepolia Testnet
 
 ## Security
 Please ensure that your MetaMask account is secure. Use HTTPS to encrypt data in transit and follow best practices for user authentication and authorization.

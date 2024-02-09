@@ -148,7 +148,7 @@ const Home = ({
                     <p>
                       Unlock the door to a realm where the boundaries between
                       artificial intelligence and blockchain dissolve. Our
-                      platform is not just about running code; it's about
+                      platform is not just about running code; it&apos;s about
                       sculpting the future. Dive deep, transact securely with
                       MetaMask, and be the architect of your machine learning
                       destiny

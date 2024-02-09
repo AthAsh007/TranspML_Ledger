@@ -120,7 +120,7 @@ const Home = ({
       {/* Home main */}
       <section className="section">
         <div className="container">
-          <h1>Welcome Back! You're Now Logged In.</h1>
+          <h1>Welcome Back! You&apos;re Now Logged In.</h1>
         </div>
         <div className="container">
           <div className="row items-start">

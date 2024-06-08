@@ -46,7 +46,7 @@ Make sure you have the following installed on your machine:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/AthAsh1006/TranspML_Ledger.git
+   git clone https://github.com/AthAsh007/TranspML_Ledger.git
 
 ## Usage
 To run the project:
